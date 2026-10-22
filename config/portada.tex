@@ -1,0 +1,89 @@
+% =====================================================================
+%  PORTADA  (apdo. 1.7, figura 1 del libro de estilo)
+%  Bloque superior 22,7 cm con el color de la titulación
+%  Franja inferior 7,0 cm oscura
+%  Logos en imagenes/ (vale .pdf, .png o .jpg):
+%    logo-eps        -> logo EPS con el texto "Escuela Politécnica Superior"
+%    logo-titulacion -> logo del grado
+%    logo-ua         -> logo Universidad de Alicante (versión blanca)
+%  Si un logo no existe se muestra un hueco provisional.
+% =====================================================================
+
+% \siexistelogo{nombre}{si existe}{si no existe}
+% Deja en \rutalogo el archivo encontrado
+\newcommand{\siexistelogo}[3]{%
+  \IfFileExists{imagenes/#1.pdf}{\def\rutalogo{#1.pdf}#2}{%
+  \IfFileExists{imagenes/#1.png}{\def\rutalogo{#1.png}#2}{%
+  \IfFileExists{imagenes/#1.jpg}{\def\rutalogo{#1.jpg}#2}{#3}}}}
+
+\begin{titlepage}
+\newgeometry{margin=0cm}
+\singlespacing
+\begin{tikzpicture}[remember picture, overlay]
+  % Bloque superior: color de la titulación
+  \fill[colorTitulacion] (current page.north west)
+       rectangle ([yshift=7cm]current page.south east);
+  % Franja inferior
+  \fill[colorFranja] (current page.south west)
+       rectangle ([yshift=7cm]current page.south east);
+
+  % --- Logo EPS (arriba derecha)
+  \siexistelogo{logo-eps}{%
+    % La imagen ya incluye el texto "Escuela Politécnica Superior"
+    \node[anchor=north west, inner sep=0pt]
+      at ($(current page.north west)+(13.4cm,-1.3cm)$)
+      {\includegraphics[width=5.4cm]{\rutalogo}};
+  }{%
+    % Provisional: hueco + texto en Helvética 14 pt
+    \node[anchor=north east, inner sep=0pt, text=colorTextoPortada]
+      at ($(current page.north west)+(15.9cm,-1.4cm)$)
+      {\fbox{\parbox[c][1.6cm][c]{2.1cm}{\centering\tiny logo EPS}}};
+    \draw[colorTextoPortada, line width=1.2pt]
+      ($(current page.north west)+(16.15cm,-1.3cm)$) -- ++(0,-1.9cm);
+    \node[anchor=north west, align=left, inner sep=0pt,
+          font=\fontfamily{phv}\fontsize{14}{16.5}\selectfont, text=colorTextoPortada]
+      at ($(current page.north west)+(16.4cm,-1.45cm)$)
+      {Escuela\\Politécnica\\Superior};
+  }
+
+  % --- Título: Helvetica Condensed 55 pt
+  \node[anchor=north west, align=left, inner sep=0pt, text width=17.5cm,
+        font=\fontfamily{phv}\fontseries{c}\fontsize{55}{62}\selectfont,
+        text=colorTextoPortada]
+    at ($(current page.north west)+(2.1cm,-9.6cm)$) {\tituloTFG};
+
+  % --- Logo titulación + nombre de la titulación en Helvética 20 pt
+  \siexistelogo{logo-titulacion}{%
+    \node[anchor=west, inner sep=0pt] at ($(current page.north west)+(2.3cm,-15.3cm)$)
+      {\includegraphics[width=2cm]{\rutalogo}};
+  }{%
+    \node[anchor=west, inner sep=0pt] at ($(current page.north west)+(2.3cm,-15.3cm)$)
+      {\tikz\draw[colorTextoPortada, dashed] (0,0) circle (0.95cm);};
+  }
+  \node[anchor=west, inner sep=0pt,
+        font=\fontfamily{phv}\fontsize{20}{24}\selectfont, text=colorTextoPortada]
+    at ($(current page.north west)+(4.8cm,-15.3cm)$) {\titulacion};
+
+  % --- Franja inferior: tipo de trabajo (20 pt) y datos (12 pt)
+  \node[anchor=north west, inner sep=0pt,
+        font=\fontfamily{phv}\fontsize{20}{24}\selectfont, text=white]
+    at ($(current page.south west)+(2.4cm,5.95cm)$) {\tipoTrabajo};
+  \node[anchor=north west, align=left, inner sep=0pt,
+        font=\fontfamily{phv}\fontsize{12}{14.5}\selectfont, text=white]
+    at ($(current page.south west)+(2.4cm,4.55cm)$)
+    {Autor:\\\autorTFG\\[9pt]\etiquetaTutor\\\tutoresTFG\\[9pt]\fechaTFG};
+
+  % --- Logo Universidad de Alicante (versión blanca)
+  \siexistelogo{logo-ua}{%
+    \node[anchor=south east, inner sep=0pt]
+      at ($(current page.south west)+(19.4cm,1.5cm)$)
+      {\includegraphics[width=6.4cm]{\rutalogo}};
+  }{%
+    \node[anchor=south east, inner sep=0pt, text=white]
+      at ($(current page.south west)+(19.4cm,1.5cm)$)
+      {\parbox{6.2cm}{\raggedleft\fontfamily{ptm}\fontsize{14}{16}\selectfont
+         Universitat d'Alacant\\Universidad de Alicante}};
+  }
+\end{tikzpicture}
+\restoregeometry
+\end{titlepage}

@@ -1,0 +1,21 @@
+\chapter{Desarrollo}
+
+\section{Ejemplo de código}
+El código usa la familia de ancho fijo (código~\ref{lst:ejemplo}).
+
+\begin{lstlisting}[language=Java, caption={Ejemplo de función}, label={lst:ejemplo}]
+// Calcula la distancia entre dos puntos
+public double distancia(Punto a, Punto b) {
+    double dx = a.x - b.x;
+    double dy = a.y - b.y;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+\end{lstlisting}
+
+\section{Ejemplo de fórmula}
+Las fórmulas sencillas en línea se escriben así: $x^2 + y^2 = r^2$, $a + b = c$.
+Las más complejas, numeradas:
+\begin{equation}
+  d(a,b) = \sqrt{(a_x - b_x)^2 + (a_y - b_y)^2}
+  \label{eq:distancia}
+\end{equation}

@@ -1,0 +1,51 @@
+% =====================================================================
+%  TFG - Grado en Ingeniería Multimedia - EPS Universidad de Alicante
+%  Compilar:  latexmk -pdf main.tex      (pdflatex + biber)
+% =====================================================================
+\documentclass[12pt,a4paper,twoside,openright]{book}
+
+\input{config/estilo}
+\input{config/datos}
+
+\hypersetup{pdftitle={\tituloTFGpdf}, pdfauthor={\autorTFG},
+            pdfsubject={\tipoTrabajo. \titulacion}}
+
+\begin{document}
+
+% ---------------- Portada ----------------
+\input{config/portada}
+
+% ---------------- Parte preliminar (apdo. 2.1 - 2.5) ----------------
+\frontmatter
+\include{capitulos/00-justificacion}
+\include{capitulos/00-agradecimientos}
+\include{capitulos/00-dedicatoria}   % opcional (una hoja)
+\include{capitulos/00-cita}          % opcional (una hoja)
+
+% Índices: cada uno empieza en página nueva, en este orden
+\tableofcontents
+\listoffigures
+\listoftables
+% \lstlistoflistings                 % descomenta si quieres índice de código
+\include{capitulos/00-abreviaturas}
+
+% ---------------- Cuerpo (apdo. 2.6 y 2.7) ----------------
+\mainmatter
+\include{capitulos/01-introduccion}
+\include{capitulos/02-estado-del-arte}
+\include{capitulos/03-objetivos}
+\include{capitulos/04-metodologia}
+\include{capitulos/05-desarrollo}
+\include{capitulos/06-resultados}
+\include{capitulos/07-conclusiones}
+
+% ---------------- Bibliografía (apdo. 2.8) ----------------
+\cleardoublepage
+\markboth{Bibliografía}{Bibliografía}
+\printbibliography[heading=bibintoc, title={Bibliografía y referencias}]
+
+% ---------------- Anexos (apdo. 2.9) ----------------
+\appendix
+\include{anexos/A-anexo}
+
+\end{document}
