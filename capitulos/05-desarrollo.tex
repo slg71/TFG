@@ -41,6 +41,7 @@ A diferencia de otros títulos con sistemas de adaptabilidad oculta que modifica
 \section{Documento de Diseño Artístico}
 \subsection{Estilo Visual y Paleta de Colores}
 La dirección artística opta por un estilo 2D con una marcada sensación de profundidad tridimensional (2.5D), articulado desde una perspectiva en tercera persona cenital oblicua (\textit{top-down} 3/4). Este enfoque visual toma como referentes principales la disposición espacial de \textit{Undertale} \parencite{fox2015}, junto con el acabado pictórico, atmosférico y estilizado de obras como \textit{Oxenfree} \parencite{nightschool2016} y \textit{Night in the Woods} \parencite{infinitefall2017}. De este modo, se evita el \textit{pixel art} convencional para construir entornos transitables en todas las direcciones del plano ($X$ e $Y$) que envuelven físicamente al protagonista.
+\\\\
 Esta identidad visual se fundamenta en tres pilares expresivos que refuerzan la metáfora del agotamiento psicológico y la crisis de identidad de género:
 \begin{itemize}
   \item La cámara en ángulo picado oblicuo permite al jugador desplazarse libremente hacia el fondo, el frente y los laterales del escenario. A diferencia de una vista lateral plana, esta perspectiva subraya la vulnerabilidad del personaje al situarlo rodeado por la arquitectura opresiva y las manifestaciones del escrutinio social.
@@ -67,6 +68,7 @@ Esta identidad visual se fundamenta en tres pilares expresivos que refuerzan la 
 
 \subsection{Diseño de Personajes y Entornos}
 En primer lugar, en cuanto al personaje principal presenta un diseño minimalista de líneas fluidas y silueta andróginal, optimizado mediante sprites para asegurar su legibilidad en el plano bidimensional (X e Y) bajo la perspectiva cenital oblicua (top-down ¾). Siguiendo los principios de identificación empática \parencite{navarro2023}, se prescinde de rasgos faciales detallados, concentrando la expresividad en su postura corporal, el movimiento de su vestimenta y su sombra proyectada.
+\\\\
 Una vez que el jugador acepta un cambio, el aspecto del avatar muta en tiempo real según la Tabla 2
 \begin{table}[htbp]
   \centering
@@ -87,6 +89,7 @@ Una vez que el jugador acepta un cambio, el aspecto del avatar muta en tiempo re
 \end{table}
 
 En segundo lugar, aplicando los principios de la narrativa ambiental \parencite{finestrat2018}, los escenarios y las entidades que los habitan proyectan el conflicto interno del protagonista sin recurrir a texto expositivo. Para materializar la profundidad tridimensional (2.5D) en Unity mediante \textit{Tilemap} y \textit{Sprite Editor} \parencite{unity2023}, cada escena combina un primer plano oclusivo (\textit{foreground}), un plano medio jugable con ordenación dinámica en el eje vertical (\textit{Y-Sorting}, permitiendo al avatar rodear obstáculos por delante y por detrás), y un fondo abisal con desplazamiento diferencial (\textit{parallax}).
+\\\\
 La distribución espacial de los tres mundos y el diseño de sus respectivas manifestaciones abstractas se organizan en la Tabla 3:
 \begin{table}[htbp]
   \centering
@@ -108,9 +111,13 @@ La distribución espacial de los tres mundos y el diseño de sus respectivas man
 
 \subsection{Iluminación y Diseño de Interfaz (UI) Adaptativa}
 En cuanto a la iluminación, para dotar al entorno cenital oblicuo (\textit{top-down} 3/4) de volumen sin sobrecargar el rendimiento ni complicar la jerarquía de Unity, se emplea el sistema \textit{2D Lighting} del paquete \textit{Universal Render Pipeline} (\ac{URP} 2D) \parencite{unity2023}, de tal manera que:
+\\\\
 Por un lado, en lugar de sistemas lumínicos dinámicos complejos, utilizan luces globales suaves (Global Light 2D) combinadas con luces puntuales fijas (Point Lights 2D) en puntos estratégicos de los escenarios para marcar zonas de interés o áreas de transición.
+\\\\
 Por otro lado, el avatar incorpora un único componente de luz puntual hijo de su jerarquía (Point Light 2D de corto alcance), lo que proyecta un halo circular continuo sobre el suelo a su alrededor sin requerir cálculos pesados de sombras en tiempo real, garantizando una ejecución fluida en el prototipo.
+\\\\
 En cuanto a la interfaz de usuario (UI) adaptativa se implementa mediante un único lienzo (Canvas) en espacio de pantalla con elemetnos dinámicos controlados por scripst ligeros. La ventana de notificación del Consentimiento Explícito se resuelve mediante un panel de diálogo flotante básico que pausa temporalmente la lógica de movimiento (Time.timeScale = 0), evitando la complejidad de gestionar interfaces completamente diegéticas en 3D.
+\\\\
 El cambio visual de los elementos de UI según el perfil detectado por el sistema en segundo plano se gestiona de forma eficiente mediante perfiles de datos (ScriptableObjects), adaptando sus parámetros visuales conforme a la Tabla 4:
 \begin{table}[htbp]
   \centering
