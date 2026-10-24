@@ -1,7 +1,7 @@
 \chapter{Diseño del Videojuego (GDD) y Dirección Artística}
 
 \section{Concepto General y Sinopsis Argumental}
-Título del Proyecto: ns
+Título del Proyecto: Sin definir
 Género: aventura narrativa 2D / Exploración introspectiva
 Plataforma Objetivo: PC / Mac (Entorno Unity)
 Público Objetivo: jugadores interesados en experiencias narrativas independientes, representación LGTBIQ+, salud mental y diseño de juego experimental.
@@ -32,13 +32,15 @@ A continuación, se muestra un esquema de flujo del sistema de mecánicas adapta
   \label{fig:esquema-mecanicas}
   \fuente{elaboración propia}
 \end{figure}
+%lista de habilidades y transformaciones.
+%NO ESTOY MUY SEGURO CON EL TEMA DE PERFILES, PUEDE ESTAR SUJETOS A CAMBIOS PEQUEÑOS O GRANDES.
 
 \section{Consentimiento del Jugador y Accesibilidad Emocional}
 A diferencia de otros títulos con sistemas de adaptabilidad oculta que modifican las reglas unilateralmente, este juego introduce la mecánica del Consentimiento Explícito. De tal manera que, cuando el analizador detecta un hábito consolidado a partir de las acciones optadas por el jugador, el juego presenta una notificación en pantalla donde el jugador puede seleccionar si aceptar la mutación de sus habilidades (por ejemplo, transformar esquivar en una carga frontal) o rechazar el cambio, conservando la configuración de control previa. Esta decisión garantiza que la agencia del usuario no sea vulnerada y evita la frustración mecánica, reforzando la idea de que la persona al mando tiene el control sobre el proceso de afrontamiento de su personaje.
 
 \section{Documento de Diseño Artístico}
 \subsection{Estilo Visual y Paleta de Colores}
-La dirección artística opta por un estilo 2D con una marcada sensación de profundidad tridimensional (2.5D), articulado desde una perspectiva en tercera persona cenital oblicua (top-down ¾). Este enfoque visual toma como referentes principales la disposición espacial de Underale (TToby Fox, 2015), junto con el acabado pictórico, atmosférico y estilizado de obras como Oxenfree (Night School Studio, 2016) y Night in the Woods (Infinite Fall, 2017). De este modo, se evita el pixel art convencional para construir entornos transitables en todas las direcciones del plano (X e Y) que envuelven físicamente al protagonista.
+La dirección artística opta por un estilo 2D con una marcada sensación de profundidad tridimensional (2.5D), articulado desde una perspectiva en tercera persona cenital oblicua (\textit{top-down} 3/4). Este enfoque visual toma como referentes principales la disposición espacial de \textit{Undertale} \parencite{fox2015}, junto con el acabado pictórico, atmosférico y estilizado de obras como \textit{Oxenfree} \parencite{nightschool2016} y \textit{Night in the Woods} \parencite{infinitefall2017}. De este modo, se evita el \textit{pixel art} convencional para construir entornos transitables en todas las direcciones del plano ($X$ e $Y$) que envuelven físicamente al protagonista.
 Esta identidad visual se fundamenta en tres pilares expresivos que refuerzan la metáfora del agotamiento psicológico y la crisis de identidad de género:
 \begin{itemize}
   \item La cámara en ángulo picado oblicuo permite al jugador desplazarse libremente hacia el fondo, el frente y los laterales del escenario. A diferencia de una vista lateral plana, esta perspectiva subraya la vulnerabilidad del personaje al situarlo rodeado por la arquitectura opresiva y las manifestaciones del escrutinio social.
@@ -84,7 +86,7 @@ Una vez que el jugador acepta un cambio, el aspecto del avatar muta en tiempo re
   \fuente{elaboración propia.}
 \end{table}
 
-En segundo lugar, los escenarios y las entidades que los habitan proyectan el conflicto interno del protagonista sin recurrir a texto expositivo. Para materializar la profundidad tridimensional (2.5D) en Unity mediante Tilemap y Sprite Editor, cada escena combina un primer plano oclusivo (foreground), un plano medio jugable con ordenación dinámica en el eje vertical (Y-Sorting, permitiendo al avatar rodear obstáculos por delante y por detrás), y un fondo abisal con desplazamiento diferencial (parallax).
+En segundo lugar, aplicando los principios de la narrativa ambiental \parencite{finestrat2018}, los escenarios y las entidades que los habitan proyectan el conflicto interno del protagonista sin recurrir a texto expositivo. Para materializar la profundidad tridimensional (2.5D) en Unity mediante \textit{Tilemap} y \textit{Sprite Editor} \parencite{unity2023}, cada escena combina un primer plano oclusivo (\textit{foreground}), un plano medio jugable con ordenación dinámica en el eje vertical (\textit{Y-Sorting}, permitiendo al avatar rodear obstáculos por delante y por detrás), y un fondo abisal con desplazamiento diferencial (\textit{parallax}).
 La distribución espacial de los tres mundos y el diseño de sus respectivas manifestaciones abstractas se organizan en la Tabla 3:
 \begin{table}[htbp]
   \centering
@@ -105,7 +107,7 @@ La distribución espacial de los tres mundos y el diseño de sus respectivas man
 \end{table}
 
 \subsection{Iluminación y Diseño de Interfaz (UI) Adaptativa}
-En cuanto a la iluminación, para dotar al entorno cenital oblicuo (top-down ¾) de volumen sin sobrecargar el rendimiento ni compilar la jerarquía de Unity, se emplea el sistema 2D Lighting del paquete Universal Render Pipeline (URP 2D), de tal manera que:
+En cuanto a la iluminación, para dotar al entorno cenital oblicuo (\textit{top-down} 3/4) de volumen sin sobrecargar el rendimiento ni complicar la jerarquía de Unity, se emplea el sistema \textit{2D Lighting} del paquete \textit{Universal Render Pipeline} (\ac{URP} 2D) \parencite{unity2023}, de tal manera que:
 Por un lado, en lugar de sistemas lumínicos dinámicos complejos, utilizan luces globales suaves (Global Light 2D) combinadas con luces puntuales fijas (Point Lights 2D) en puntos estratégicos de los escenarios para marcar zonas de interés o áreas de transición.
 Por otro lado, el avatar incorpora un único componente de luz puntual hijo de su jerarquía (Point Light 2D de corto alcance), lo que proyecta un halo circular continuo sobre el suelo a su alrededor sin requerir cálculos pesados de sombras en tiempo real, garantizando una ejecución fluida en el prototipo.
 En cuanto a la interfaz de usuario (UI) adaptativa se implementa mediante un único lienzo (Canvas) en espacio de pantalla con elemetnos dinámicos controlados por scripst ligeros. La ventana de notificación del Consentimiento Explícito se resuelve mediante un panel de diálogo flotante básico que pausa temporalmente la lógica de movimiento (Time.timeScale = 0), evitando la complejidad de gestionar interfaces completamente diegéticas en 3D.
