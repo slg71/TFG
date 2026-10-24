@@ -25,7 +25,7 @@ El núcleo interactivo reside en la clasificación implícita de las acciones de
   \item Evasivo: uso constante de saltos, esquivas y rodeos para evitar contacto con posibles amenazas, teniendo una mínima interacción directa con el entorno.
 \end{itemize}
 A continuación, se muestra un esquema de flujo del sistema de mecánicas adaptativas:
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{Esquema.png}
   \caption{Esquema de flujo del sistema de mecánicas adaptativas}
@@ -48,7 +48,7 @@ Esta identidad visual se fundamenta en tres pilares expresivos que refuerzan la 
   \item Las figuras del plano jugable presentan siluetas vectoriales definidas y expresivas, mientras que los pavimentos en perspectiva, las estructuras colapsadas y los abismos emplean texturas orgánicas, pinceladas desgastadas y densos bancos de niebla que acentúan la perspectiva aérea y el aislamiento.
   \item La paleta cromática evoluciona según la carga emocional de la escena y la transición a través de los tres mundos abstractos (Tabla 1):
 \end{itemize}
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \caption{Paleta cromática de los entornos abstractos del juego y la evolución del UI.}
   \label{tab:paleta}
@@ -70,7 +70,7 @@ Esta identidad visual se fundamenta en tres pilares expresivos que refuerzan la 
 En primer lugar, en cuanto al personaje principal presenta un diseño minimalista de líneas fluidas y silueta andróginal, optimizado mediante sprites para asegurar su legibilidad en el plano bidimensional (X e Y) bajo la perspectiva cenital oblicua (top-down ¾). Siguiendo los principios de identificación empática \parencite{navarro2023}, se prescinde de rasgos faciales detallados, concentrando la expresividad en su postura corporal, el movimiento de su vestimenta y su sombra proyectada.
 \\\\
 Una vez que el jugador acepta un cambio, el aspecto del avatar muta en tiempo real según la Tabla 2
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \caption{Evolución visual del protagonista según el perfil conductual consolidado.}
   \label{tab:EvolucionVisual}
@@ -91,13 +91,13 @@ Una vez que el jugador acepta un cambio, el aspecto del avatar muta en tiempo re
 En segundo lugar, aplicando los principios de la narrativa ambiental \parencite{finestrat2018}, los escenarios y las entidades que los habitan proyectan el conflicto interno del protagonista sin recurrir a texto expositivo. Para materializar la profundidad tridimensional (2.5D) en Unity mediante \textit{Tilemap} y \textit{Sprite Editor} \parencite{unity2023}, cada escena combina un primer plano oclusivo (\textit{foreground}), un plano medio jugable con ordenación dinámica en el eje vertical (\textit{Y-Sorting}, permitiendo al avatar rodear obstáculos por delante y por detrás), y un fondo abisal con desplazamiento diferencial (\textit{parallax}).
 \\\\
 La distribución espacial de los tres mundos y el diseño de sus respectivas manifestaciones abstractas se organizan en la Tabla 3:
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \caption{Diseño escenográfico y manifestaciones abstractas por mundos.}
   \label{tab:DiseñoEscenografico}
   \small
   \renewcommand{\arraystretch}{1.2}
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.7cm}YYY}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.5cm}YYY}
     \toprule
     Entorno/Estado & Distribución espacial y recursos en Unity (2.5D) & Manifestaciones abstractas & Diseño visual de las manifestaciones \\
     \midrule
@@ -119,13 +119,13 @@ Por otro lado, el avatar incorpora un único componente de luz puntual hijo de s
 En cuanto a la interfaz de usuario (UI) adaptativa se implementa mediante un único lienzo (Canvas) en espacio de pantalla con elemetnos dinámicos controlados por scripst ligeros. La ventana de notificación del Consentimiento Explícito se resuelve mediante un panel de diálogo flotante básico que pausa temporalmente la lógica de movimiento (Time.timeScale = 0), evitando la complejidad de gestionar interfaces completamente diegéticas en 3D.
 \\\\
 El cambio visual de los elementos de UI según el perfil detectado por el sistema en segundo plano se gestiona de forma eficiente mediante perfiles de datos (ScriptableObjects), adaptando sus parámetros visuales conforme a la Tabla 4:
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
   \caption{Cambio visual de la interfaz de usuario (UI) según el perfil conductual evaluado.}
   \label{tab:CambioVisualUI}
   \small
   \renewcommand{\arraystretch}{1.2}
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{1.7cm}YYY}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.5cm}YYY}
     \toprule
     Perfil conductual & Estilo Visual de la UI & Comportamiento en Pantalla & Nivel de opacidad y contraste \\
     \midrule
