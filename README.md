@@ -14,6 +14,21 @@ The project proposes a 2.5D top-down (3/4) narrative experience featuring a back
 Este repositorio contiene la memoria técnica (**LaTeX**) y el futuro prototipo funcional (**Unity / C#**) de mi Trabajo Fin de Grado: *"Desarrollo de un videojuego narrativo en 2D con mecánicas adaptativas sobre la perspectiva de género"*.  
 El proyecto plantea una experiencia narrativa 2.5D (*top-down* 3/4) con un módulo evaluador en segundo plano que analiza el comportamiento del jugador (*agresivo, pasivo o evasivo*) para adaptar en tiempo real las habilidades, el aspecto del avatar y la interfaz (UI) mediante `ScriptableObjects` y un sistema de consentimiento explícito.
 
+---
+
+### 📂 Estructura del Repositorio / Repository Structure
+- **[`docs/`](./docs):** Memoria académica y Diseño del Juego (GDD) en **LaTeX** (`pdflatex` + `biber`).
+- **[`game/`](./game):** Proyecto del videojuego en **Unity (C# / URP 2D)** *(En fase de prototipado)*.
+
+---
+
 ### 🛠️ Stack Tecnológico / Tech Stack
 - **Motor y Programación:** Unity (URP 2D Lighting, Tilemap, Sprite Editor), C# (`ScriptableObjects`)
 - **Documentación Académica:** LaTeX (`pdflatex` + `biber`, normativa APA, plantilla EPS UA)
+
+---
+
+### 🔄 Esquema del Sistema Adaptativo / Adaptive System Flow
+<p align="center">
+  <img src="docs/imagenes/Esquema.png" alt="Esquema de flujo del sistema de mecánicas adaptativas" width="700" />
+</p>
