@@ -1,53 +1,19 @@
-# Plantilla LaTeX – TFG Grado en Ingeniería Multimedia (EPS, UA)
+# 🎮 TFG: Videojuego Narrativo 2D con Mecánicas Adaptativas
+> **Grado en Ingeniería Multimedia — Universidad de Alicante (EPS UA)**  
+> **Autor:** Leigh Garrett | **Tutores:** Carlos J. Villagrá Arnedo, Patricia María Compañ Rosique  
+> **Estado:** En desarrollo (Fase de investigación, Estado del Arte y GDD)
 
-Ajustada al *Libro de Estilo para la presentación de memorias del TFG/TFM* de la EPS.
+---
 
-## 1. Instalación
+### 📖 Descripción General / Overview
+🇬🇧 **EN:**  
+This repository contains the academic documentation (**LaTeX**) and upcoming prototype (**Unity / C#**) for my Bachelor's Thesis: *"Development of a 2D narrative videogame with adaptive mechanics on gender perspective"*.  
+The project proposes a 2.5D top-down (3/4) narrative experience featuring a background behavioral evaluator (*aggressive, passive, evasive* profiles) that dynamically mutates player abilities, visual sprites, and UI in real time using `ScriptableObjects` and an explicit player consent mechanic.
 
-| Sistema | Distribución LaTeX | Editor recomendado |
-|---|---|---|
-| Windows | MiKTeX (o TeX Live) | VS Code + LaTeX Workshop, o TeXstudio |
-| macOS | MacTeX | VS Code + LaTeX Workshop, o TeXstudio |
-| Linux | `sudo apt install texlive-full biber latexmk` | VS Code + LaTeX Workshop |
+🇪🇸 **ES:**  
+Este repositorio contiene la memoria técnica (**LaTeX**) y el futuro prototipo funcional (**Unity / C#**) de mi Trabajo Fin de Grado: *"Desarrollo de un videojuego narrativo en 2D con mecánicas adaptativas sobre la perspectiva de género"*.  
+El proyecto plantea una experiencia narrativa 2.5D (*top-down* 3/4) con un módulo evaluador en segundo plano que analiza el comportamiento del jugador (*agresivo, pasivo o evasivo*) para adaptar en tiempo real las habilidades, el aspecto del avatar y la interfaz (UI) mediante `ScriptableObjects` y un sistema de consentimiento explícito.
 
-Con MiKTeX, activa la instalación automática de paquetes. Necesitas **Perl** para `latexmk`
-(Strawberry Perl en Windows).
-
-## 2. Compilar
-
-```bash
-latexmk -pdf main.tex     # compila todo (pdflatex + biber + índices)
-latexmk -c                # limpia archivos auxiliares
-```
-
-En TeXstudio: *Opciones → Configurar → Compilación → Herramienta de bibliografía: Biber*.
-
-## 3. Qué editar
-
-- `config/datos.tex` → título, autor, tutor/es, fecha (portada y metadatos del PDF).
-- `capitulos/*.tex` → contenido. `anexos/*.tex` → anexos.
-- `bibliografia.bib` → referencias (exportables desde Zotero con Better BibTeX).
-- `imagenes/` → figuras y logos de la portada:
-  `logo-eps.pdf`, `logo-ua.pdf` (versión blanca) y `logo-titulacion.pdf`.
-  Si no existen, la portada muestra huecos provisionales.
-
-## 4. Correspondencia con el libro de estilo
-
-| Requisito | Dónde |
-|---|---|
-| A4, dos caras, márgenes 3 / 2,5 / 2,5 / 2,5 cm con cabecera y pie dentro | `geometry` en `config/estilo.tex` |
-| Interlineado 1,5 | `\onehalfspacing` |
-| Títulos Helvética (fam. 1), texto Palatino (fam. 2), código Courier (fam. 3) | `helvet`, `mathpazo`, `courier` |
-| Fórmulas en Palatino itálica | `mathpazo` |
-| Cabeceras distintas pares/impares | `fancyhdr` |
-| Portada con RGB (239, 206, 53) de Multimedia y texto negro | `config/portada.tex` |
-| Orden: justificación, agradecimientos, dedicatoria, cita, índices, cuerpo, conclusiones, bibliografía, anexos | `main.tex` |
-| Dedicatoria y cita: una hoja, alineación derecha | entorno `paginaderecha` |
-| "Figura 2.1", "Tabla 3.2" y nota de fuente | `caption` + `\fuente{}` |
-| Bibliografía APA en familia 1 | `biblatex` (`style=apa`, `\bibfont`) |
-
-Para usar el sistema numérico ISO 690: cambia `style=apa` por `style=iso-numeric`.
-
-## 5. Entrega
-La memoria se entrega en **PDF**, junto al resto de archivos, en un único `.zip`/`.rar`
-por el Campus Virtual.
+### 🛠️ Stack Tecnológico / Tech Stack
+- **Motor y Programación:** Unity (URP 2D Lighting, Tilemap, Sprite Editor), C# (`ScriptableObjects`)
+- **Documentación Académica:** LaTeX (`pdflatex` + `biber`, normativa APA, plantilla EPS UA)
