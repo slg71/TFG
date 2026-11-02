@@ -1,34 +1,47 @@
-# 🎮 TFG: Videojuego Narrativo 2D con Mecánicas Adaptativas
+# 🎮 TFG: Videojuego Narrativo 2D en Primera Persona con Mecánicas Adaptativas
+
 > **Grado en Ingeniería Multimedia — Universidad de Alicante (EPS UA)**  
 > **Autor:** Leigh Garrett | **Tutores:** Carlos J. Villagrá Arnedo, Patricia María Compañ Rosique  
-> **Estado:** En desarrollo (Fase de investigación, Estado del Arte y GDD)
+> **Estado:** En desarrollo
 
 ---
 
 ### 📖 Descripción General / Overview
-🇬🇧 **EN:**  
-This repository contains the academic documentation (**LaTeX**) and upcoming prototype (**Unity / C#**) for my Bachelor's Thesis: *"Development of a 2D narrative videogame with adaptive mechanics on gender perspective"*.  
-The project proposes a 2.5D top-down (3/4) narrative experience featuring a background behavioral evaluator (*aggressive, passive, evasive* profiles) that dynamically mutates player abilities, visual sprites, and UI in real time using `ScriptableObjects` and an explicit player consent mechanic.
 
-🇪🇸 **ES:**  
-Este repositorio contiene la memoria técnica (**LaTeX**) y el futuro prototipo funcional (**Unity / C#**) de mi Trabajo Fin de Grado: *"Desarrollo de un videojuego narrativo en 2D con mecánicas adaptativas sobre la perspectiva de género"*.  
-El proyecto plantea una experiencia narrativa 2.5D (*top-down* 3/4) con un módulo evaluador en segundo plano que analiza el comportamiento del jugador (*agresivo, pasivo o evasivo*) para adaptar en tiempo real las habilidades, el aspecto del avatar y la interfaz (UI) mediante `ScriptableObjects` y un sistema de consentimiento explícito.
+**ES:**  
+Este repositorio contiene la memoria académica (**LaTeX**) y el prototipo funcional (**Unity / C#**) de mi Trabajo Fin de Grado: *"Desarrollo de un videojuego narrativo en 2D con mecánicas adaptativas sobre la perspectiva de género"*.  
+
+El proyecto plantea una experiencia en **primera persona 2D con sensación de profundidad (2.5D)** basada en *sprites* planos orientados a cámara (*billboards*) pintados a mano. La historia comienza bajo la falsa premisa de un apocalipsis zombi de supervivencia y atraviesa tres mundos (*Calles de Cuarentena*, *Laberinto Fracturado* e *Instituto y Azotea*) como metáfora del agotamiento psicológico derivado de la disforia de género y el rechazo social. A nivel técnico, incorpora un **Director de Alucinación** en segundo plano que evalúa el estilo del jugador en tres dimensiones continuas (*Ímpetu, Cautela y Templanza*) e inyecta **Mecanismos de Defensa** (habilidades e interfaz adaptativa) mediante `ScriptableObjects`, pidiendo siempre el **consentimiento explícito** del usuario.
+
+**EN:**  
+This repository contains the academic thesis (**LaTeX**) and prototype (**Unity / C#**) for my Bachelor's Thesis: *"Development of a 2D narrative videogame with adaptive mechanics on gender perspective"*.  
+
+The project proposes a **first-person 2D experience with 2.5D depth** using hand-painted 2D *billboard* sprites. Starting under the false premise of a zombie survival game, the player traverses three shifting worlds that represent the psychological exhaustion caused by gender dysphoria and social rejection. Technically, it features a background **Hallucination Director** that evaluates player behavior across three continuous dimensions (*Impetus, Caution, and Temperance*) and injects **Defense Mechanisms** (adaptive abilities and UI) in real time via `ScriptableObjects` and an **explicit player consent** mechanic.
 
 ---
 
 ### 📂 Estructura del Repositorio / Repository Structure
-- **[`docs/`](./docs):** Memoria académica y Diseño del Juego (GDD) en **LaTeX** (`pdflatex` + `biber`).
-- **[`game/`](./game):** Proyecto del videojuego en **Unity (C# / URP 2D)** *(En fase de prototipado)*.
+
+- **[`docs/`](./docs):** Memoria académica y Documento de Diseño del Juego (GDD) en **LaTeX** (`pdflatex` + `biber`, normativa APA, plantilla oficial EPS UA).
+- **[`game/`](./game):** Proyecto del prototipo en **Unity (C# / URP)** *(En fase de prototipado)*.
 
 ---
 
 ### 🛠️ Stack Tecnológico / Tech Stack
-- **Motor y Programación:** Unity (URP 2D Lighting, Tilemap, Sprite Editor), C# (`ScriptableObjects`)
-- **Documentación Académica:** LaTeX (`pdflatex` + `biber`, normativa APA, plantilla EPS UA)
+
+- **Motor y Programación:** Unity (URP Lighting, 2D Billboards en 1.ª persona, Canvas UI), C# (`ScriptableObjects`, Patrón Observador).
+- **Documentación Académica:** LaTeX (`pdflatex` + `biber`, estilo APA).
 
 ---
 
-### 🔄 Esquema del Sistema Adaptativo / Adaptive System Flow
+### 🔄 Flujo del Sistema Adaptativo / Adaptive System Flow
+
 <p align="center">
-  <img src="docs/imagenes/Esquema.png" alt="Esquema de flujo del sistema de mecánicas adaptativas" width="700" />
+  <img src="docs/imagenes/Esquema.png" alt="Esquema de flujo del Director de Alucinación y los Mecanismos de Defensa" width="700" />
+</p>
+
+### 🎨 Concepto Visual en Primera Persona (2.5D Billboards)
+
+<p align="center">
+  <img src="docs/imagenes/image_1.png" alt="Boceto conceptual del Mundo 3 en primera persona con billboards 2D" width="700" />
 </p>

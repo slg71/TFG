@@ -1,158 +1,180 @@
 \chapter{Diseño del Videojuego (GDD) y Dirección Artística}
-%concretarlo.
-Este capítulo recoge la especificación completa del diseño del juego, incluyendo la sinopsis, los mundos abstractos, las reglas del sistema adaptativo, el consentimiento del jugador y el documento de diseño artístico, que abarca el estilo visual, la paleta de colores, el diseño de personajes y entornos, la iluminación y la interfaz de usuario (UI) adaptativa. La justificación de las decisiones de diseño se fundamenta en la investigación documental y en el asesoramiento psicológico recibido durante la fase de desarrollo del proyecto, así como en la experiencia adquirida a lo largo del Grado en Ingeniería Multimedia. Además, se incluyen referencias a obras de videojuegos independientes y experimentales que han servido como inspiración para la creación de este prototipo funcional. Y como parte de la documentación del GDD, se presentan diagramas de flujo y tablas que ilustran la evolución de los perfiles conductuales del jugador y su impacto en la jugabilidad, así como la relación entre los elementos narrativos y las mecánicas adaptativas implementadas en el juego. En las referencias bibliográficas se incluyen fuentes académicas y artículos especializados que respaldan las decisiones de diseño y la implementación de mecánicas adaptativas en videojuegos, así como estudios sobre narrativa interactiva, salud mental y representación de género en medios digitales ya que estos aspectos son fundamentales para la comprensión del contexto y la relevancia del proyecto porque permiten situar el prototipo dentro de un marco teórico sólido y ofrecer una experiencia de juego que sea significativa y respetuosa con la temática abordada.
+\label{cap:desarrollo}
+
+En este capítulo se detalla el Documento de Diseño de Juego (\ac{GDD}) y el apartado artístico pensados para el prototipo. Siguiendo la idea de diseñar la narrativa y la jugabilidad de forma conectada \parencite{hernandez2024, navarro2023}, he organizado este \ac{GDD} para que tanto las mecánicas de cada nivel como el sistema adaptativo en segundo plano \parencite{tremblay2010, renderhub2023} y el estilo visual \parencite{finestrat2018, boyero2025} reflejen en todo momento el estado psicológico del protagonista. Los puntos principales que definen esta propuesta son el uso de una cámara en primera persona combinada con dibujos \ac{2D} planos (\textit{billboards} en 2.5D), un Director de Alucinación que evalúa cómo jugamos sin encerrarnos en perfiles rígidos y el sistema de consentimiento explícito para activar «Mecanismos de Defensa» mediante \textit{ScriptableObjects}.
 
 \section{Concepto General y Sinopsis Argumental}
-Título del Proyecto: Sin definir
-Género: aventura narrativa 2D / Exploración introspectiva
-Plataforma Objetivo: PC / Mac (Entorno Unity)
-Público Objetivo: jugadores interesados en experiencias narrativas independientes, representación LGTBIQ+, salud mental y diseño de juego experimental.
-
-\subsection{Sinopsis}
-El juego sitúa al personaje protagonista en el centro de un colapso apocalíptico. Lo que a primera vista aparenta ser la destrucción física de un mundo urbano decadente revela ser la representación externa del agotamiento mental causado por la disforia, la imposición de roles de género y el rechazo social acumulado. Para sobrevivir, el protagonista debe atravesar una serie de planos abstractos que personifican las etapas de su conflicto identitario, enfrentándose a manifestaciones físicas del escrutinio social y aprendiendo a reconocer su propio espacio e identidad.
-
-\section{Diseño Narrativo y Estructura de Mundos Abstractos}
-El desarrollo narrativo del juego se formula a través de tres mundos o dimensiones abstractas principales, cada una vinculada a un estado emocional y a un conjunto de estresores concretos:
 \begin{itemize}
-  \item Mundo 1: Vecindad Urbana: estructuras monolíticas, sombras fijas y entornos vacíos de vida. Simboliza la presión del entorno social y la necesidad forzada de adaptarse a expectativas externas. Las mecánicas iniciales son rígidas y restrictivas. Aquí el protagonista se enfrentará a dos manifestaciones abstractas: un ángel ciego y herido, y una entidad de la oscuridad sin cuerpo físico.
-  \item Mundo 2: Laberinto Fracturado: escenarios fragmentados, flotantes, caracterizados por geometrías inestables y ecos sonoros, creando un especie de laberinto complicado. Representa la fase más crítica del agotamiento psicológico e internalizado. Aquí es donde el sistema adaptativo empieza a sugerir mutaciones profundas en el control del personaje y se enfrenta a dos manifestaciones abstractas: un amigo olvidado el cual busca que le encuentren, y un reflejo mutado del propio protagonista.
-  \item Mundo 3: Azotea Libre: un plano de líneas depuradas, iluminación suave y espacio amplio. Esta etapa final es el desenlace que se adapta para ofrecer una resolución abierta cuyo tono e interpretación dependerá del perfil conductual consolidado a lo largo del juego. Aquí únicamente se dialogará directamente con el protagonista.
+  \item \textbf{Título del proyecto:} \textit{Sin definir (Prototipo TFG)}
+  \item \textbf{Género:} aventura de acción y supervivencia en primera persona \ac{2D} (2.5D) / exploración introspectiva con puzles.
+  \item \textbf{Plataforma objetivo:} PC / Mac (desarrollado en el motor Unity).
+  \item \textbf{Público objetivo:} jugadores interesados en juegos narrativos independientes, representación LGTBIQ+, salud mental y experiencias que se adaptan a la forma de jugar de cada persona.
 \end{itemize}
 
-\section{Sistema de Mecánicas Adaptivas y Perfiles de Jugador}
-El núcleo interactivo reside en la clasificación implícita de las acciones del jugador en tres perfiles conductuales:
+\subsection{Sinopsis y Giro Argumental}
+La partida empieza metiendo al jugador de lleno en lo que parece ser un apocalipsis zombi justo después de que el protagonista haya sufrido un mordisco. Durante el inicio del juego, tanto los escenarios como las mecánicas en primera persona buscan que el usuario piense que está ante un juego de supervivencia clásico: avanzar por calles cerradas, escapar o enfrentarse a oleadas de infectados y superar al jefe de cada zona. Sin embargo, conforme avanza la supuesta infección y pasamos de un mundo a otro, el aspecto visual y la forma de jugar van cambiando hasta descubrir qué está ocurriendo en realidad.
+
+Lo que al principio parecía un virus zombi y una horda de monstruos resulta ser una alucinación provocada por el agotamiento mental extremo, la disforia de género y el miedo al rechazo social acumulado en su día a día \parencite{gomez2026}. Cada mundo representa una etapa de este bloqueo interno hasta que, en el tercer y último escenario, la alucinación se rompe y el protagonista vuelve a la realidad: los pasillos de su propio instituto. Allí, las oleadas de zombis se transforman en las siluetas y miradas de sus compañeros de clase, a quienes debe atravesar avanzando en línea recta hacia la azotea para llegar a un desenlace abierto.
+
+\section{Diseño Narrativo y Estructura de Mundos}
+El recorrido del juego se divide en tres mundos conectados entre sí. Entre un mundo y otro no solo cambia el estilo visual, sino también la forma de jugar (pasando del sigilo o la acción a los puzles y, finalmente, al avance directo entre la multitud), viéndose afectado cada escenario por cómo hayamos superado el anterior \parencite{tremblay2010, renderhub2023}:
+
+\begin{enumerate}
+  \item \textbf{Mundo 1: Calles de Cuarentena.} El juego comienza en callejones oscuros y edificios cerrados llenos de siluetas de infectados. El escenario está pensado para que el \textbf{sigilo}, fijarse en los caminos y esquivar el peligro sea la forma más segura de avanzar. Aun así, el jugador también puede intentar abrirse paso \textbf{por la fuerza}, enfrentándose directamente a los enemigos aunque le cueste mucho más esfuerzo y haga que el entorno se vuelva más hostil. Al final de este mundo toca superar a una manifestación que actúa como jefe: una \textit{entidad de la oscuridad} cuyas manos salen de las sombras para bloquear el paso.
+
+  \item \textbf{Mundo 2: El Laberinto Fracturado.} Al salir del primer mundo, la alucinación va a más y las calles se rompen formando un laberinto abstracto de pasillos y piezas flotantes. Aquí golpear deja de servir para nada y la clave para avanzar es tener \textbf{paciencia y resolver puzles}. La forma y dificultad de este laberinto cambian según cómo hayamos jugado en el Mundo 1:
+  \begin{itemize}
+    \item Si el jugador pasó el Mundo 1 \textit{a la fuerza}, el laberinto se vuelve más caótico, con caminos cambiantes, ruidos molestos y puzles que le obligan a parar y calmarse para poder seguir.
+    \item Si el jugador cruzó el Mundo 1 usando el \textit{sigilo y el cuidado}, el laberinto es más tranquilo y muestra pistas visuales sutiles en las paredes (\textit{narrativa ambiental}) que premian haberse fijado en los detalles.
+  \end{itemize}
+  Como cierre de este mundo aparece una segunda manifestación ligada a su identidad: un \textit{reflejo distorsionado del propio protagonista} que imita o entorpece nuestros pasos.
+
+  \item \textbf{Mundo 3: El Instituto y la Azotea.} En la recta final, el filtro de apocalipsis zombi se desmorona y el escenario nos devuelve al lugar real del conflicto: los pasillos del instituto. Las grandes oleadas de zombis empiezan a parpadear y mezclarse con siluetas de estudiantes cuyos murmullos y miradas tapan el camino. El pasillo obliga al jugador a caminar en \textbf{línea recta} hacia las escaleras que suben a la azotea. La manera de cruzar este último pasillo (apartando a la multitud por la fuerza, aguantando el agobio con una coraza mental o colándose en silencio por los huecos) y el tono de la escena final en la azotea dependerán de las habilidades que el jugador haya ido aceptando a lo largo de su partida \parencite{gomez2026, hernandez2024}.
+\end{enumerate}
+
+\section{Sistema de Mecánicas Adaptativas y Director de Alucinación}
+Al plantear cómo debía adaptarse el juego al usuario, descarté la idea de usar perfiles cerrados (como dividir a los jugadores únicamente en agresivos, pasivos o evasivos) porque acababan cayendo en estereotipos y limitaban mucho las opciones de una persona real. En su lugar, tomando como referencia los estudios sobre mecánicas adaptativas de \textcite{tremblay2010} y los sistemas que aprenden del estilo de juego en tiempo real \parencite{renderhub2023}, he diseñado un sistema basado en un \textbf{Vector Continuo de Afrontamiento}, controlado por un \textbf{Director de Alucinación} y por «Mecanismos de Defensa» creados con \textit{ScriptableObjects}.
+
+De esta forma, en vez de ponerle una etiqueta fija al jugador, el juego va midiendo sus acciones en tres ejes o dimensiones continuas (con valores de $0.0$ a $1.0$ que pueden combinarse entre sí):
+
 \begin{itemize}
-  \item Agresivo: realiza a menudo acciones de confrontación directa contra los obstáculos/enemigos, junto con un avance rápido seguido y uso frecuente de habilidades de impacto.
-  \item Pasivo: se encuentra en largos periodos de inmovilidad ante la presencia de enemigos, avance lento, interacción cuidadosa con el entorno y casi nunca usa habilidades de impacto.
-  \item Evasivo: uso constante de saltos, esquivas y rodeos para evitar contacto con posibles amenazas, teniendo una mínima interacción directa con el entorno.
+  \item \textbf{Ímpetu (fuerza / confrontación):} sube cuando el jugador decide encarar a las oleadas de frente, romper barricadas a golpes o avanzar corriendo hacia el peligro sin esconderse.
+  \item \textbf{Cautela (sigilo / distanciamiento):} sube cuando el jugador aprovecha las zonas oscuras, apaga su luz, rodea el campo de visión de los enemigos y guarda las distancias para no hacer ruido.
+  \item \textbf{Templanza (paciencia / análisis):} sube cuando el jugador se detiene a observar el escenario antes de actuar, se fija en las pistas visuales, resuelve los puzles del laberinto con calma y evita recibir daño innecesario.
 \end{itemize}
-A continuación, se muestra un esquema de flujo del sistema de mecánicas adaptativas:
+
+En la Figura~\ref{fig:esquema-mecanicas} se resume todo el recorrido que sigue este sistema adaptativo desde que recoge lo que hace el jugador hasta que adapta al personaje y a los mundos.
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{Esquema.png}
-  \caption{Esquema de flujo del sistema de mecánicas adaptativas}
+  \caption{Esquema de flujo del Director de Alucinación y los Mecanismos de Defensa.}
   \label{fig:esquema-mecanicas}
-  \fuente{elaboración propia}
+  \fuente{elaboración propia.}
 \end{figure}
-%lista de habilidades y transformaciones.
-%NO ESTOY MUY SEGURO CON EL TEMA DE PERFILES, PUEDE ESTAR SUJETOS A CAMBIOS PEQUEÑOS O GRANDES.
 
-\section{Consentimiento del Jugador y Accesibilidad Emocional}
-A diferencia de otros títulos con sistemas de adaptabilidad oculta que modifican las reglas unilateralmente, este juego introduce la mecánica del Consentimiento Explícito. De tal manera que, cuando el analizador detecta un hábito consolidado a partir de las acciones optadas por el jugador, el juego presenta una notificación en pantalla donde el jugador puede seleccionar si aceptar la mutación de sus habilidades (por ejemplo, transformar esquivar en una carga frontal) o rechazar el cambio, conservando la configuración de control previa. Esta decisión garantiza que la agencia del usuario no sea vulnerada y evita la frustración mecánica, reforzando la idea de que la persona al mando tiene el control sobre el proceso de afrontamiento de su personaje.
+Siguiendo los pasos de la Figura~\ref{fig:esquema-mecanicas}, este ciclo funciona dentro de Unity en cuatro etapas:
 
-\section{Documento de Diseño Artístico}
-\subsection{Estilo Visual y Paleta de Colores}
-La dirección artística opta por un estilo 2D con una marcada sensación de profundidad tridimensional (2.5D), articulado desde una perspectiva en tercera persona cenital oblicua (\textit{top-down} 3/4). Este enfoque visual toma como referentes principales la disposición espacial de \textit{Undertale} \parencite{fox2015}, junto con el acabado pictórico, atmosférico y estilizado de obras como \textit{Oxenfree} \parencite{nightschool2016} y \textit{Night in the Woods} \parencite{infinitefall2017}. De este modo, se evita el \textit{pixel art} convencional para construir entornos transitables en todas las direcciones del plano ($X$ e $Y$) que envuelven físicamente al protagonista.
-\\\\
-Esta identidad visual se fundamenta en tres pilares expresivos que refuerzan la metáfora del agotamiento psicológico y la crisis de identidad de género:
-\begin{itemize}
-  \item La cámara en ángulo picado oblicuo permite al jugador desplazarse libremente hacia el fondo, el frente y los laterales del escenario. A diferencia de una vista lateral plana, esta perspectiva subraya la vulnerabilidad del personaje al situarlo rodeado por la arquitectura opresiva y las manifestaciones del escrutinio social.
-  \item Las figuras del plano jugable presentan siluetas vectoriales definidas y expresivas, mientras que los pavimentos en perspectiva, las estructuras colapsadas y los abismos emplean texturas orgánicas, pinceladas desgastadas y densos bancos de niebla que acentúan la perspectiva aérea y el aislamiento.
-  \item La paleta cromática evoluciona según la carga emocional de la escena y la transición a través de los tres mundos abstractos (Tabla 1):
-\end{itemize}
+\begin{enumerate}
+  \item \textbf{Registro de acciones en segundo plano:} mientras jugamos cada nivel en primera persona, un script observador anota en silencio datos sencillos: golpes dados y recibidos, segundos pasados en zonas de sombra, velocidad media al caminar, fallos o aciertos en los puzles y distancia a la que pasamos de las hordas \parencite{renderhub2023}.
+  \item \textbf{Evaluación del Director de Alucinación:} al terminar una zona o superar al jefe de un mundo, el Director de Alucinación calcula los pesos de las tres dimensiones (\textit{Ímpetu, Cautela y Templanza}) \parencite{tremblay2010}. A la vez, ajusta una variable global llamada «Nivel de Alucinación» ($0\text{--}100$), que sube si nos dejamos llevar por el choque violento y baja si actuamos con sigilo y calma.
+  \item \textbf{Pregunta de Consentimiento Explícito:} cuando una de las dimensiones destaca claramente sobre las demás, el juego muestra una ventana flotante proponiendo al jugador un nuevo «Mecanismo de Defensa» adaptado a su forma de jugar.
+  \item \textbf{Activación de Mecanismos de Defensa (\textit{ScriptableObjects}):} según lo que decida el jugador, el sistema carga en tiempo real el archivo de datos con la nueva habilidad y el estilo de interfaz, además de preparar los ajustes del siguiente mundo (cantidad de enemigos, comportamiento del laberinto y variante del final en la azotea), tal como se recoge en la Tabla~\ref{tab:mutacion-mecanicas}.
+\end{enumerate}
+
 \begin{table}[H]
   \centering
-  \caption{Paleta cromática de los entornos abstractos del juego y la evolución del UI.}
+  \caption{Relación entre las dimensiones de juego, los Mecanismos de Defensa y su efecto en los mundos.}
+  \label{tab:mutacion-mecanicas}
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.3cm}YYY}
+    \toprule
+    Dimensión dominante & Qué registra el juego en segundo plano & Mecanismo de Defensa (Habilidad) & Cómo afecta a los mundos y al final \\
+    \midrule
+    \textbf{Ímpetu} (fuerza) & Combate directo contra oleadas, rotura de bloqueos y avance rápido de frente. & \textbf{Rabia Defensiva (embestida):} permite empujar grupos de enemigos y romper barreras físicas, a cambio de cansarse antes y distorsionar más la vista. & El laberinto (Mundo 2) se vuelve más inestable y reactivo; en el instituto (Mundo 3) te abres paso empujando a la multitud hasta la azotea. \\
+    \textbf{Cautela} (sigilo) & Tiempo en sombras, rodear conos de visión y cruzar zonas sin alertar a nadie. & \textbf{Desplazamiento Velado:} reduce el ruido al caminar y permite deslizarse rápido de una sombra o rincón a otro sin ser visto. & El laberinto abre huecos y atajos discretos; en el instituto avanzas esquivando las miradas entre los huecos del pasillo. \\
+    \textbf{Templanza} (paciencia) & Observar antes de moverse, resolver puzles sin fallos y fijarse en el escenario. & \textbf{Foco Introspectivo (coraza):} resalta pistas ocultas en los puzles del laberinto y da una coraza mental que reduce el agobio al pasar cerca de las hordas. & El laberinto calma su movimiento antes; en el instituto caminas con paso firme hacia la azotea ignorando los murmullos. \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{elaboración propia a partir de \textcite{tremblay2010} y \textcite{renderhub2023}.}
+\end{table}
+
+\section{Consentimiento del Jugador y Accesibilidad Emocional}
+En muchos juegos que cambian sus reglas por detrás sin avisar, el jugador acaba sintiendo que pierde el control de su propio personaje, provocando esa sensación de rechazo o desconexión que \textcite{gomez2026} describe como «paradoja de la desposesión». Para evitar que eso ocurra en mi proyecto, he incluido la mecánica del \textbf{Consentimiento Explícito}.
+
+Cada vez que el Director de Alucinación detecta que hemos jugado de una forma muy marcada al terminar una sección, aparece en pantalla un pensamiento interno del protagonista preguntándonos si queremos dejarnos llevar por esa reacción. El usuario tiene siempre dos opciones claras: \textbf{aceptar} el nuevo Mecanismo de Defensa (cambiando su habilidad y su interfaz) o \textbf{rechazarlo} para seguir jugando exactamente con los controles que ya tenía. Así me aseguro de que nadie se sienta obligado a jugar de una forma que no le gusta y de que sea el propio jugador quien decida cómo quiere que el protagonista afronte su proceso \parencite{gomez2026, hernandez2024}.
+
+\section{Documento de Diseño Artístico}
+
+\subsection{Estilo Visual y Paleta de Colores}
+Teniendo en cuenta que este prototipo lo desarrollo en solitario para el \ac{TFG} y que debo centrar los esfuerzos en que la programación en Unity funcione bien, he optado por un estilo visual en \textbf{primera persona 2D con sensación de profundidad (2.5D)}. En la práctica, esto consiste en moverse en primera persona por escenarios sencillos (pasillos y salas con volumen básico) donde los enemigos, obstáculos y elementos decorativos son \textit{sprites} planos en \ac{2D} recortados como siluetas (\textit{paper cutout} o \textit{billboards}) que giran para mirar siempre hacia la cámara, de forma parecida a juegos como \textit{Inscryption} o \textit{Spooky's Jump Scare Mansion}.
+
+Esta decisión tiene dos grandes ventajas para el proyecto: por un lado, me ahorra tener que dibujar y animar a un personaje protagonista en tercera persona desde cuatro u ocho direcciones distintas; y, por otro, hace que la inmersión sea mucho más directa porque vemos el mundo y las alucinaciones literalmente a través de los ojos del protagonista. Los puntos principales de este apartado visual son:
+
+\begin{itemize}
+  \item Al jugar en primera persona, en la parte inferior de la pantalla solo necesitamos mostrar el boceto de las manos del protagonista, situando al jugador cara a cara frente a las hordas y manifestaciones que le cierran el paso.
+  \item Las figuras que nos rodean son \textit{billboards} \ac{2D} de trazo suelto y expresivo que nos siguen con la mirada al pasar, lo que ayuda mucho a transmitir la sensación de sentirse observado y juzgado en los pasillos.
+  \item El estilo de los dibujos imita la ilustración tradicional hecha a mano (con trazos de pincel, tinta y textura de papel bocetado) digitalizada para meterla en Unity, dejando así una base visual con personalidad que se pueda seguir puliendo en el futuro después de presentar el \ac{TFG}.
+  \item La paleta de colores va cambiando de un mundo a otro para acompañar el paso desde la oscuridad de la alucinación hasta la claridad de la azotea, tal como se detalla en la Tabla~\ref{tab:paleta}.
+\end{itemize}
+
+\begin{table}[H]
+  \centering
+  \caption{Paleta cromática de los tres mundos del juego y evolución de la atmósfera.}
   \label{tab:paleta}
   \small
   \renewcommand{\arraystretch}{1.2}
-  \begin{tabularx}{\textwidth}{YYYY}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.2cm}YYY}
     \toprule
-    Entorno/Estado & Tono Dominante & Tono Secundario & Tono de Acento \\
+    Entorno / Estado & Tono Dominante & Tono Secundario & Tono de Acento (Luz / UI) \\
     \midrule
-    Mundo 1 &  & & \\
-    Mundo 2 &  &  & \\
-    Mundo 3 &  &  & \\
+    \textbf{Mundo 1: Calles de Cuarentena} & Gris hormigón (\texttt{\#4A5568}) & Verde musgo apagado (\texttt{\#687565}) & Rojo alerta / Azul frío (\texttt{\#2B6CB0}) \\
+    \textbf{Mundo 2: Laberinto Fracturado} & Violeta desaturado (\texttt{\#4A3B52}) & Sombra abisal (\texttt{\#1A202C}) & Magenta apagado (\texttt{\#9F7AEA}) \\
+    \textbf{Mundo 3: Instituto y Azotea} & Beige pasillo escolar (\texttt{\#CBD5E0}) & Blanco cálido en azotea (\texttt{\#F7FAFC}) & Ámbar claro (\texttt{\#D69E2E}) \\
     \bottomrule
   \end{tabularx}
   \fuente{elaboración propia.}
 \end{table}
 
-\subsection{Diseño de Personajes y Entornos}
-En primer lugar, en cuanto al personaje principal presenta un diseño minimalista de líneas fluidas y silueta andróginal, optimizado mediante sprites para asegurar su legibilidad en el plano bidimensional (X e Y) bajo la perspectiva cenital oblicua (top-down ¾). Siguiendo los principios de identificación empática \parencite{navarro2023}, se prescinde de rasgos faciales detallados, concentrando la expresividad en su postura corporal, el movimiento de su vestimenta y su sombra proyectada.
-\\\\
-Una vez que el jugador acepta un cambio, el aspecto del avatar muta en tiempo real según la Tabla 2
-\begin{table}[H]
-  \centering
-  \caption{Evolución visual del protagonista según el perfil conductual consolidado.}
-  \label{tab:EvolucionVisual}
-  \small
-  \renewcommand{\arraystretch}{1.2}
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.5cm}YYY}
-    \toprule
-    Perfil Conductual & Silueta y Contorno & Animación y Postura Corporal & Tratamiento Cromático y Efectos \\
-    \midrule
-    Agresivo (Confrontación) & Cortes geométricos angulosos y trazo vectorial más grueso & Postura firme e inclinada hacia adelante en avances e impactos & Alto contraste respecto al pavimento y destellos de impacto\\
-    Pasivo (Bloqueo) & Silueta compacta, encogida y de bordes redondeados & Avance lento, hombros retraídos y prenda replegada como refugio & Tonos desaturados que se mezclan con las sombras del entorno\\
-    Evasivo (Huida) & Acabado liviano con bordes orgánicos difuminados & Movimiento ágil en saltos, esquivas y rodeos constantes & Estela traslúcida al cambiar rápidamente de dirección\\
-    \bottomrule
-  \end{tabularx}
-  \fuente{elaboración propia.}
-\end{table}
+La Figura~\ref{fig:ejemplo-pantalla} muestra un ejemplo conceptual de cómo se ve el Mundo 3 desde esta cámara en primera persona: las siluetas de los compañeros/zombis se orientan hacia el jugador en el pasillo mientras aparece en pantalla el aviso del Consentimiento Explícito.
 
-En segundo lugar, aplicando los principios de la narrativa ambiental \parencite{finestrat2018}, los escenarios y las entidades que los habitan proyectan el conflicto interno del protagonista sin recurrir a texto expositivo. Para materializar la profundidad tridimensional (2.5D) en Unity mediante \textit{Tilemap} y \textit{Sprite Editor} \parencite{unity2023}, cada escena combina un primer plano oclusivo (\textit{foreground}), un plano medio jugable con ordenación dinámica en el eje vertical (\textit{Y-Sorting}, permitiendo al avatar rodear obstáculos por delante y por detrás), y un fondo abisal con desplazamiento diferencial (\textit{parallax}).
-\\\\
-La distribución espacial de los tres mundos y el diseño de sus respectivas manifestaciones abstractas se organizan en la Tabla 3:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{image_1.png}
+  \caption{Boceto conceptual del Mundo 3 en primera persona con \textit{billboards} 2D y aviso de consentimiento explícito.}
+  \label{fig:ejemplo-pantalla}
+  \fuente{elaboración propia.}
+\end{figure}
+
+\subsection{Diseño de Entornos y Manifestaciones}
+Apoyándome en la narrativa ambiental \parencite{finestrat2018, boyero2025}, los propios escenarios en primera persona son los que van dando pistas de que el apocalipsis zombi es en realidad una metáfora de su día a día escolar (por ejemplo, carteles o taquillas que empiezan a verse entre las paredes derruidas). A nivel técnico en Unity, montar los niveles así resulta muy asequible para la demo: basta con crear pasillos y salas de geometría plana sencilla donde se colocan los \textit{billboards} \ac{2D} a distintas distancias para dar sensación de profundidad \parencite{unity2023}.
+
+En la Tabla~\ref{tab:DisenoEscenografico} se resume cómo se organiza cada uno de los tres mundos y qué aspecto tienen las entidades que aparecen en ellos:
+
 \begin{table}[H]
   \centering
-  \caption{Diseño escenográfico y manifestaciones abstractas por mundos.}
-  \label{tab:DiseñoEscenografico}
+  \caption{Diseño de niveles en primera persona y manifestaciones de cada mundo.}
+  \label{tab:DisenoEscenografico}
   \small
   \renewcommand{\arraystretch}{1.2}
   \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.5cm}YYY}
     \toprule
-    Entorno/Estado & Distribución espacial y recursos en Unity (2.5D) & Manifestaciones abstractas & Diseño visual de las manifestaciones \\
+    Entorno / Estado & Diseño de nivel en Unity (1.ª persona 2.5D) & Enemigos y jefes (manifestaciones) & Aspecto visual (\textit{billboards} 2D) \\
     \midrule
-    Mundo 1 & Calles y plazas delimitadas por estructuras monolíticas y sombras fijas (Tilemap estático) & Ángel ciego y herido;Entidad de la oscuridad& El ángel emplea trazos vectoriales rígidos y agrietados; la entidad utiliza un espacio completamente oscuro sin contorno fijo desde donde únicamente se muestran sus manos\\
-    Mundo 2 & Islas flotantes y geometrías inestables suspendidas sobre abismos (Parallax multicapa) & Amigo olvidado;Reflejo mutado del protagonista& El amigo presenta una silueta fragmentada y brumosa; el reflejo distorsiona el sprite del protagonista con proporciones quebradas\\
-    Mundo 3 & Explanada amplia y despejada de líneas depuradas sin obstáculos restrictivos & Protagonista (diálogo interno) & Espacio abierto enfocado exclusivamente en la figura del propio avatar\\
+    \textbf{Mundo 1: Calles de Cuarentena} & Callejones y salas cerradas con esquinas oscuras para esconderse en sigilo y barricadas que se pueden romper. & Oleadas de infectados; \textit{entidad de la oscuridad}. & Los infectados son siluetas oscuras y encorvadas; el jefe final muestra grandes manos de sombra que salen de las paredes. \\
+    \textbf{Mundo 2: Laberinto Fracturado} & Pasillos flotantes, puertas con símbolos y caminos enredados con puzles visuales en primera persona. & \textit{Reflejo mutado del protagonista}. & Una silueta distorsionada y quebrada frente a nosotros que bloquea los cruces e imita nuestro paso. \\
+    \textbf{Mundo 3: Instituto y Azotea} & Pasillo largo de instituto en línea recta que termina en la puerta de salida hacia una azotea abierta y luminosa. & Oleadas de zombis que parpadean como estudiantes; \textit{diálogo interno} en la azotea. & Los monstruos pierden su forma zombi y se ven como siluetas de alumnos mirándonos; al salir a la azotea queda el cielo despejado. \\
     \bottomrule
   \end{tabularx}
   \fuente{elaboración propia.}
 \end{table}
 
 \subsection{Iluminación y Diseño de Interfaz (UI) Adaptativa}
-En cuanto a la iluminación, para dotar al entorno cenital oblicuo (\textit{top-down} 3/4) de volumen sin sobrecargar el rendimiento ni complicar la jerarquía de Unity, se emplea el sistema \textit{2D Lighting} del paquete \textit{Universal Render Pipeline} (\ac{URP} 2D) \parencite{unity2023}, de tal manera que:
-\\\\
-Por un lado, en lugar de sistemas lumínicos dinámicos complejos, utilizan luces globales suaves (Global Light 2D) combinadas con luces puntuales fijas (Point Lights 2D) en puntos estratégicos de los escenarios para marcar zonas de interés o áreas de transición.
-\\\\
-Por otro lado, el avatar incorpora un único componente de luz puntual hijo de su jerarquía (Point Light 2D de corto alcance), lo que proyecta un halo circular continuo sobre el suelo a su alrededor sin requerir cálculos pesados de sombras en tiempo real, garantizando una ejecución fluida en el prototipo.
-\\\\
-En cuanto a la interfaz de usuario (UI) adaptativa se implementa mediante un único lienzo (Canvas) en espacio de pantalla con elemetnos dinámicos controlados por scripst ligeros. La ventana de notificación del Consentimiento Explícito se resuelve mediante un panel de diálogo flotante básico que pausa temporalmente la lógica de movimiento (Time.timeScale = 0), evitando la complejidad de gestionar interfaces completamente diegéticas en 3D.
-\\\\
-El cambio visual de los elementos de UI según el perfil detectado por el sistema en segundo plano se gestiona de forma eficiente mediante perfiles de datos (ScriptableObjects), adaptando sus parámetros visuales conforme a la Tabla 4:
+Para conseguir que los pasillos en primera persona y los \textit{sprites} planos tengan atmósfera sin complicar el proyecto en Unity, utilizo la iluminación básica del paquete \textit{Universal Render Pipeline} (\ac{URP}) junto con niebla ambiental \parencite{unity2023}:
+
+\begin{itemize}
+  \item En el \textbf{Mundo 1}, predomina la penumbra con focos de luz fijos (como farolas o luces de emergencia) que marcan claramente dónde nos ven los enemigos y qué rincones oscuros sirven para pasar en sigilo. Además, el jugador lleva una luz tenue frontal a modo de linterna corta que ilumina los \textit{billboards} cercanos.
+  \item En el \textbf{Mundo 2}, la luz acompaña a la resolución de los puzles: a medida que activamos mecanismos con calma, los pasillos del laberinto se van iluminando y despejando la niebla para señalar el camino correcto.
+  \item En el \textbf{Mundo 3}, el pasillo del instituto tiene una luz fría de fluorescentes que parpadea con la tensión de la multitud hasta que, al cruzar la puerta de la azotea, pasamos a una luz global cálida y suave que transmite alivio y calma.
+\end{itemize}
+
+Por último, al jugar en primera persona, la interfaz de usuario (\ac{UI}) cobra un papel fundamental porque representa directamente la vista y el estado mental del protagonista \parencite{gomez2026, hernandez2024}. En Unity se implementa con un único lienzo (\textit{Canvas}) sobre la pantalla que muestra el indicador de alucinación, los bordes de viñeta y el cuadro de diálogo del Consentimiento Explícito (que pausa el movimiento con \texttt{Time.timeScale = 0} mientras decidimos). Cuando el jugador acepta un Mecanismo de Defensa, el archivo \textit{ScriptableObject} cambia también el aspecto de esta interfaz según se indica en la Tabla~\ref{tab:CambioVisualUI}:
+
 \begin{table}[H]
   \centering
-  \caption{Cambio visual de la interfaz de usuario (UI) según el perfil conductual evaluado.}
+  \caption{Cambios visuales en la interfaz de usuario (UI) según la dimensión predominante.}
   \label{tab:CambioVisualUI}
   \small
   \renewcommand{\arraystretch}{1.2}
   \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.5cm}YYY}
     \toprule
-    Perfil conductual & Estilo Visual de la UI & Comportamiento en Pantalla & Nivel de opacidad y contraste \\
+    Dimensión predominante & Estilo visual de la UI & Comportamiento en primera persona & Opacidad y efecto en pantalla \\
     \midrule
-    Agresivo & Bordes angulosos y trazos destacados & Posición fija y estable en la esquina superior del lienzo & Opacidad alta y colores contrastados\\
-    Pasivo & Líneas finas y formas compactas & Retraimiento visual hacia los márgenes de la pantalla & Opacidad reducida\\
-    Evasivo & Trazos suaves y redondeados & Movimiento de flotación sútil adaptado al desplazamiento del avatar & Opacidad variable vinculada a la velocidad de movimiento\\
+    \textbf{Ímpetu} (fuerza) & Bordes angulosos, trazos gruesos de pincel y marcadores de tensión. & Fija y muy visible; tiembla ligeramente al golpear o chocar contra las oleadas. & Opacidad alta, viñeta rojiza/oscura en los bordes y alto contraste. \\
+    \textbf{Cautela} (sigilo) & Líneas muy finas, discretas y bordes difuminados. & Se encoge hacia las esquinas de la pantalla cuando nos metemos en zonas oscuras. & Opacidad baja (muy transparente) para dejar ver mejor en la penumbra. \\
+    \textbf{Templanza} (paciencia) & Trazos limpios, ordenados y equilibrados. & Estable y tranquila; ilumina suavemente los bordes al fijarnos en puzles o pistas. & Opacidad media con tonos claros que despejan la fatiga visual. \\
     \bottomrule
   \end{tabularx}
   \fuente{elaboración propia.}
 \end{table}
-
-% El código usa la familia de ancho fijo (código~\ref{lst:ejemplo}).
-% \begin{lstlisting}[language=Java, caption={Ejemplo de función}, label={lst:ejemplo}]
-% // Calcula la distancia entre dos puntos
-% public double distancia(Punto a, Punto b) {
-%     double dx = a.x - b.x;
-%     double dy = a.y - b.y;
-%     return Math.sqrt(dx * dx + dy * dy);
-% }
-% \end{lstlisting}
-
-% \section{Ejemplo de fórmula}
-% Las fórmulas sencillas en línea se escriben así: $x^2 + y^2 = r^2$, $a + b = c$.
-% Las más complejas, numeradas:
-% \begin{equation}
-%   d(a,b) = \sqrt{(a_x - b_x)^2 + (a_y - b_y)^2}
-%   \label{eq:distancia}
-% \end{equation}
